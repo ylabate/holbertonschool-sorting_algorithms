@@ -8,24 +8,25 @@
  */
 void selection_sort(int *array, size_t size)
 {
-	int temp, temp_pos;
-	size_t pass_nbr, pass;
+	int saved_value, saved_pos;
+	size_t unsorted, pass;
 
-	for (pass_nbr = 0 ; pass_nbr < size ; pass_nbr++)
-	{
-		temp = array[pass_nbr];
-		for (pass = pass_nbr ; pass < size ; pass++)
-		{
-			if (array[pass] < temp)
-			{
-				temp = array[pass];
-				temp_pos = pass;
+	for (unsorted = 0 ; unsorted < size ; unsorted++)
+	{	/* everything at the left of unsorted is already sorted so we start after */
+		saved_value = array[unsorted];
+		for (pass = unsorted ; pass < size ; pass++)
+		{ /* that mean if the actual number if less than the first */
+			if (array[pass] < saved_value)
+			{ /* save the smallest number value and pos*/
+				saved_value = array[pass];
+				saved_pos = pass;
 			}
-		}
-		if (temp != array[pass_nbr])
-		{
-			array[temp_pos] = array[pass_nbr];
-			array[pass_nbr] = temp;
+		} /* a verifiation to don't replace a number by itself */
+		if (saved_value != array[unsorted])
+		{ /* swap the far left number by the smallest already find */
+			array[saved_pos] = array[unsorted];
+			array[unsorted] = saved_value;
+
 			print_array(array, size);
 		}
 	}
