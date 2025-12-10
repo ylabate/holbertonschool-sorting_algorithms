@@ -11,8 +11,15 @@ void quick_sort(int *array, size_t size)
 	quick_sort_child(array, size, &array, size);
 }
 
-
-void quick_sort_child(int *array, size_t size, int **first_element, int length_total)
+/**
+ * quick_sort_child - Recursive helper function for quick sort
+ * @array: The sub-array to be sorted
+ * @size: Number of elements in the sub-array
+ * @first_element: Pointer to the first element of the original array
+ * @length_total: Total length of the original array
+ */
+void quick_sort_child(int *array, size_t size, int **first_element,
+			  int length_total)
 {
 	int *pivot = &array[size - 1];
 	size_t j, i = 0;
