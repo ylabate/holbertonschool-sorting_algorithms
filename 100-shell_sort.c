@@ -17,23 +17,22 @@ void shell_sort(int *array, size_t size)
 		return;
 	while (gap < size / 3)
 		gap = gap * 3 + 1;
+	if (gap == 0)
+		gap = 1;
 
 	while (gap >= 1)
 	{
 		for (progress = gap; progress < size; progress++)
 		{
-			if (current[progress] < current[progress - gap])
+			temp_progress = progress;
+			while (temp_progress >= gap &&
+				current[temp_progress] < current[temp_progress - gap])
 			{
-				temp_progress = progress;
-				while (temp_progress >= gap &&
-					current[temp_progress] < current[temp_progress - gap])
-				{
-					temp = current[temp_progress];
-					current[temp_progress] = current[temp_progress - gap];
-					current[temp_progress - gap] = temp;
+				temp = current[temp_progress];
+				current[temp_progress] = current[temp_progress - gap];
+				current[temp_progress - gap] = temp;
 
-					temp_progress -= gap;
-				}
+				temp_progress -= gap;
 			}
 		}
 
