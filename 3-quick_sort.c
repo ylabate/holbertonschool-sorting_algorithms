@@ -16,10 +16,10 @@ void quick_sort(int *array, size_t size)
  * @array: The sub-array to be sorted
  * @size: Number of elements in the sub-array
  * @first_element: Pointer to the first element of the original array
- * @length_total: Total length of the original array
+ * @size_total: Total length of the original array
  */
 void quick_sort_child(int *array, size_t size, int **first_element,
-			  int length_total)
+			  int size_total)
 {
 	int *pivot = &array[size - 1];
 	size_t j, i = 0;
@@ -36,7 +36,7 @@ void quick_sort_child(int *array, size_t size, int **first_element,
 				temp = array[i];
 				array[i] = array[j];
 				array[j] = temp;
-				print_array(*first_element, length_total);
+				print_array(*first_element, size_total);
 			}
 			i++;
 		}
@@ -45,11 +45,11 @@ void quick_sort_child(int *array, size_t size, int **first_element,
 		temp = array[i];
 		array[i] = *pivot;
 		*pivot = temp;
-		print_array(*first_element, length_total);
+		print_array(*first_element, size_total);
 	}
 
 	if (size < 2)
 		return;
-	quick_sort_child(array, i, first_element, length_total);
-	quick_sort_child(&array[i + 1], size - i - 1, first_element, length_total);
+	quick_sort_child(array, i, first_element, size_total);
+	quick_sort_child(&array[i + 1], size - i - 1, first_element, size_total);
 }
